@@ -4338,7 +4338,7 @@ class TCPDF {
 			}
 		}
 		++$this->numfonts;
-		if ($type == 'core') {
+		if ($type == 'Core') {
 			$name = $this->CoreFonts[$fontkey];
 			$subset = false;
 		} elseif (($type == 'TrueType') OR ($type == 'Type1')) {
@@ -4357,7 +4357,7 @@ class TCPDF {
 			$name = $fontkey;
 		}
 		// create artificial font style variations if missing (only works with non-embedded fonts)
-		if (($type != 'core') AND $missing_style) {
+		if (($type != 'Core') AND $missing_style) {
 			// style variations
 			$styles = array('' => '', 'B' => ',Bold', 'I' => ',Italic', 'BI' => ',BoldItalic');
 			$name .= $styles[$bistyle];
@@ -4416,7 +4416,7 @@ class TCPDF {
 			if (!isset($this->FontFiles[$file])) {
 				if ((strcasecmp($type,'TrueType') == 0) OR (strcasecmp($type, 'TrueTypeUnicode') == 0)) {
 					$this->FontFiles[$file] = array('length1' => $originalsize, 'fontdir' => $fontdir, 'subset' => $subset, 'fontkeys' => array($fontkey));
-				} elseif ($type != 'core') {
+				} elseif ($type != 'Core') {
 					$this->FontFiles[$file] = array('length1' => $size1, 'length2' => $size2, 'fontdir' => $fontdir, 'subset' => $subset, 'fontkeys' => array($fontkey));
 				}
 			} else {
@@ -5257,7 +5257,7 @@ class TCPDF {
 		if ($txt != '') {
 			$txt2 = $txt;
 			if ($this->isunicode) {
-				if (($this->CurrentFont['type'] == 'core') OR ($this->CurrentFont['type'] == 'TrueType') OR ($this->CurrentFont['type'] == 'Type1')) {
+				if (($this->CurrentFont['type'] == 'Core') OR ($this->CurrentFont['type'] == 'TrueType') OR ($this->CurrentFont['type'] == 'Type1')) {
 					$txt2 = TCPDF_FONTS::UTF8ToLatin1($txt2, $this->isunicode, $this->CurrentFont);
 				} else {
 					$unicode = TCPDF_FONTS::UTF8StringToArray($txt, $this->isunicode, $this->CurrentFont); // array of UTF-8 unicode values
@@ -8880,7 +8880,7 @@ class TCPDF {
 			$font = $this->getFontBuffer($k);
 			$type = $font['type'];
 			$name = $font['name'];
-			if ($type == 'core') {
+			if ($type == 'Core') {
 				// standard core font
 				$out = $this->_getobj($this->font_obj_ids[$k])."\n";
 				$out .= '<</Type /Font';
